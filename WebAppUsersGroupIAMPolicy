@@ -1,0 +1,51 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ElasticBeanstalkReadAccess",
+      "Effect": "Allow",
+      "Action": [
+        "elasticbeanstalk:DescribeEnvironments",
+        "elasticbeanstalk:DescribeApplications",
+        "elasticbeanstalk:DescribeEvents"
+      ],
+      "Resource": [
+        "arn:aws:elasticbeanstalk:*:751429157806:application/SandboxWebApp",
+        "arn:aws:elasticbeanstalk:*:751429157806:environment/SandboxWebApp/*"
+      ]
+    },
+    {
+      "Sid": "CloudWatchLogsReadAccess",
+      "Effect": "Allow",
+      "Action": [
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams",
+        "logs:GetLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:*:751429157806:log-group:/aws/vpc/flow-logs/sandbox:*"
+      ]
+    },
+    {
+      "Sid": "DenyVPCModifications",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:Create*",
+        "ec2:Delete*",
+        "ec2:Modify*",
+        "ec2:Attach*",
+        "ec2:Detach*",
+        "ec2:Associate*",
+        "ec2:Disassociate*"
+      ],
+      "Resource": [
+        "arn:aws:ec2:*:751429157806:vpc/vpc-016bcda3f5710fdf6",
+        "arn:aws:ec2:*:751429157806:subnet/*",
+        "arn:aws:ec2:*:751429157806:security-group/*",
+        "arn:aws:ec2:*:751429157806:internet-gateway/*",
+        "arn:aws:ec2:*:751429157806:natgateway/*",
+        "arn:aws:ec2:*:751429157806:route-table/*"
+      ]
+    }
+  ]
+}
